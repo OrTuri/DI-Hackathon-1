@@ -130,6 +130,12 @@ logInBtn.addEventListener("click", function(e) {
     }
 });
 
+ darBranch
 const queenDar = () => {
     console.log('hey')
 }
+
+function orBranch() {
+  console.log("Hello");
+}
+
