@@ -133,3 +133,18 @@ logInBtn.addEventListener("click", function(e) {
 const queenDar = () => {
     console.log('hey')
 }
+
+appendChild(taskDiv, input);
+
+//create label to input check
+let newLabel = createElement("Label");
+newLabel.setAttribute("for", task.task_id);
+newLabel.innerHTML = inputText.value;
+newLabel.className = 'strikethrough';
+
+appendChild(taskDiv, newLabel);
+
+inputText.value = '';
+deleteTask(taskDiv);
+
+taskDiv;
