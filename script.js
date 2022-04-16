@@ -130,9 +130,11 @@ logInBtn.addEventListener("click", function(e) {
     }
 });
 
+ darBranch
 const queenDar = () => {
     console.log('hey')
 }
+
 
 
 //create label to input check
@@ -145,3 +147,8 @@ appendChild(taskDiv, newLabel);
 
 inputText.value = '';
 deleteTask(taskDiv);
+function orBranch() {
+  console.log("Hello");
+}
+
+
