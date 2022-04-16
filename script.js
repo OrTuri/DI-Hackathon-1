@@ -115,4 +115,6 @@ logInBtn.addEventListener("click", function (e) {
   }
 });
 
-// orBranch
+function orBranch() {
+  console.log("Hello");
+}
