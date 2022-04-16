@@ -11,8 +11,7 @@ const signUpForm = document.forms.signUpForm;
 const mainHeading = document.querySelector(".main-heading");
 const calendarTable = document.querySelector(".table");
 const users = localStorage.getItem("data") ?
-    JSON.parse(localStorage.getItem("data")) :
-    [];
+    JSON.parse(localStorage.getItem("data")) : [];
 let currentUserIndex;
 // Toggeling between the login and signup screens
 function toggleSignUpLogInScreens() {
@@ -131,4 +130,6 @@ logInBtn.addEventListener("click", function(e) {
     }
 });
 
-// Dar branch
+const queenDar = () => {
+    console.log('hey')
+}
