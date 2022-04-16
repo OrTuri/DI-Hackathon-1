@@ -129,5 +129,3 @@ logInBtn.addEventListener("click", function (e) {
     createCalendar();
   }
 });
-
-// orBranch
