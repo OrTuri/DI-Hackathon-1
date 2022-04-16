@@ -134,7 +134,6 @@ const queenDar = () => {
     console.log('hey')
 }
 
-appendChild(taskDiv, input);
 
 //create label to input check
 let newLabel = createElement("Label");
@@ -146,5 +145,3 @@ appendChild(taskDiv, newLabel);
 
 inputText.value = '';
 deleteTask(taskDiv);
-
-taskDiv;
