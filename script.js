@@ -118,3 +118,18 @@ logInBtn.addEventListener("click", function (e) {
 function orBranch() {
   console.log("Hello");
 }
+
+console.log(ghgfdhgdf);
+console.log(fgh);
+console.log(ghgfd3454hgdf);
+console.log(345);
+console.log(vbvb);
+console.log(4453);
+console.log(d4r2323);
+
+function or1() {
+  alert("adas");
+}
+function or15() {
+  alert("adas");
+}
