@@ -9,6 +9,7 @@ const signUpBtnSubmit = document.querySelector(".sign-up-btn-submit");
 const logInBtn = document.querySelector(".log-in-btn");
 const signUpForm = document.forms.signUpForm;
 const mainHeading = document.querySelector(".main-heading");
+const calendarTable = document.querySelector(".table");
 const users = localStorage.getItem("data")
   ? JSON.parse(localStorage.getItem("data"))
   : [];
@@ -98,7 +99,20 @@ function mainHeadingContent() {
   else if (hour > 12 && hour < 18) greeting = "afternoon";
   else if (hour > 18 && hour < 24) greeting = "evening";
   else greeting = "night";
-  mainHeading.textContent = `Hello ${users[currentUserIndex].name}, have a good ${greeting}`;
+  mainHeading.textContent = `Hello ${
+    users[currentUserIndex].name[0].toUpperCase() +
+    users[currentUserIndex].name.slice(1).toLowerCase()
+  }, have a good ${greeting}`;
+}
+// Function to create the user's calendar
+function createCalendar() {
+  let date = new Date();
+  function createRow() {
+    const row = document.createElement("tr");
+    const tbody = document.querySelector(".table tbody");
+    row.classList.add("tbody-row");
+    tbody.append(row);
+  }
 }
 // Actions that will happend after the user click on the "log in" button
 logInBtn.addEventListener("click", function (e) {
@@ -112,5 +126,6 @@ logInBtn.addEventListener("click", function (e) {
   ) {
     displayMainScreen();
     mainHeadingContent();
+    createCalendar();
   }
 });
