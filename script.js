@@ -181,16 +181,19 @@ logInBtn.addEventListener("click", function (e) {
     openTaskWindow();
   }
 });
+// A function that opens the modal tasks window
+function openModal() {
+  const modal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+  modal.show();
+}
 function openTaskWindow() {
   const tableCells = document.querySelectorAll(".table-cell");
   tableCells.forEach((cell) => {
     cell.addEventListener("click", function (e) {
       console.log(cell.dataset.date);
+      openModal();
     });
   });
 }
-function openModal() {
-  const modal = new bootstrap.Modal(document.querySelector("#exampleModal"));
-  modal.show();
-}
+
 // openModal();
