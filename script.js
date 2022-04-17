@@ -1,4 +1,5 @@
 "use strict";
+
 // Selecting different HTML elements
 const signUpLink = document.querySelector(".sign-up-link");
 const logInLink = document.querySelector(".log-in-link");
@@ -25,10 +26,10 @@ logInLink.addEventListener("click", function(e) {
     toggleSignUpLogInScreens();
 });
 // Function to check if a username already exist in the database
-function checkIfUsernameExistAlready(name, array) {
+function checkIfUsernameExistAlready(username, array) {
     let exist;
     array.forEach((item) => {
-        if (item.username === name) {
+        if (item.username === username) {
             exist = true;
         }
     });
@@ -38,13 +39,14 @@ function checkIfUsernameExistAlready(name, array) {
 function signUpDataPushToArray(form, array) {
     const object = {};
     [...form.elements]
-    .filter((input) => input.type !== "submit")
-        .forEach((input) => {
-            object[input.className.slice(21)] = input.value;
-            input.value = "";
-        });
+    .forEach((input) => {
+        console.log(input);
+        object[input.className.slice(21)] = input.value;
+        input.value = "";
+    });
     array.push(object);
 }
+
 // Function to push the array into local storage
 function pushArrayToLocalStorage(array) {
     localStorage.setItem("data", JSON.stringify(array));
@@ -98,22 +100,69 @@ function mainHeadingContent() {
     else if (hour > 12 && hour < 18) greeting = "afternoon";
     else if (hour > 18 && hour < 24) greeting = "evening";
     else greeting = "night";
-    mainHeading.textContent = `Hello ${
-    users[currentUserIndex].name[0].toUpperCase() +
-    users[currentUserIndex].name.slice(1).toLowerCase()
-  }, have a good ${greeting}`;
+    mainHeading.textContent = `Hello ${users[currentUserIndex].name[0].toUpperCase() +
+        users[currentUserIndex].name.slice(1).toLowerCase()
+        }, have a good ${greeting}`;
 }
-// Function to create the user's calendar
-function createCalendar() {
-    let date = new Date();
 
-    function createRow() {
-        const row = document.createElement("tr");
-        const tbody = document.querySelector(".table tbody");
-        row.classList.add("tbody-row");
-        tbody.append(row);
+// Function to create the user's calendar
+const createCalendar = (year = new Date().getFullYear(), month = new Date().getMonth()) => {
+
+    let tbl = document.querySelector(".table");
+    let tblBody = document.querySelector(".tBody");
+
+    let date = 1;
+    // check how many days in a month 
+    function daysInMonth(month, year) {
+        return 32 - new Date(year, month, 32).getDate();
     }
-}
+    //Starting day of the month
+    let firstDay = (new Date(year, month)).getDay();
+    console.log(firstDay);
+
+    // creating all cells
+    for (let i = 0; i < 5; i++) {
+
+        // creates a table row
+        let row = document.createElement("tr");
+
+        for (let j = 0; j < 7; j++) {
+
+            if (i === 0 && j < firstDay) {
+                let cell = document.createElement("td");
+                let cellText = document.createTextNode(".");
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+
+            } else if (date > daysInMonth(month, year)) {
+                break;
+            } else {
+                let cell = document.createElement("td");
+                let cellText = document.createTextNode(date);
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+                if (currDay() === date) {
+                    cell.style.background = 'red'
+                }
+                date++;
+            }
+        }
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+    }
+
+    // put the <tbody> in the <table>
+    tbl.appendChild(tblBody);
+    // appends <table> into <body>
+    document.body.appendChild(tbl);
+};
+
+const currDay = () => {
+    let currDay = new Date();
+    return currDay.getDate();
+};
+
 // Actions that will happend after the user click on the "log in" button
 logInBtn.addEventListener("click", function(e) {
     e.preventDefault();
