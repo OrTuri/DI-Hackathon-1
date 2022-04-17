@@ -11,6 +11,7 @@ const logInBtn = document.querySelector(".log-in-btn");
 const signUpForm = document.forms.signUpForm;
 const mainHeading = document.querySelector(".main-heading");
 const calendarTable = document.querySelector(".table");
+let currentDateTask;
 const users = localStorage.getItem("data")
   ? JSON.parse(localStorage.getItem("data"))
   : [];
@@ -74,7 +75,6 @@ function validateLogin(array, username, password) {
   });
   if (userIndex >= 0) {
     if (array[userIndex].password === password) {
-      console.log("Logged in succesfully");
       currentUserIndex = userIndex;
       return true;
     } else {
@@ -198,20 +198,37 @@ function openTaskWindow() {
   const tableCells = document.querySelectorAll(".table-cell");
   tableCells.forEach((cell) => {
     cell.addEventListener("click", function (e) {
-      console.log(cell.dataset.date);
+      currentDateTask = new Date(cell.dataset.date);
       openModal(cell.dataset.date);
+      clearTaskScreen();
       toDoList();
     });
   });
 }
 function toDoList() {
+  const tasks = users[currentUserIndex].tasks
+    ? users[currentUserIndex].tasks
+    : (users[currentUserIndex].tasks = {});
+  function loadTasks() {
+    if (
+      Object.keys(tasks).length > 0 &&
+      tasks[String(currentDateTask)]?.length > 0
+    ) {
+      tasks[String(currentDateTask)].forEach((item) => {
+        addTask(item);
+      });
+    } else {
+      tasks[String(currentDateTask)] = [];
+    }
+  }
+  loadTasks();
   const submitBtn = document.querySelector(".submit-btn");
   const taskInput = document.querySelector(".task-input");
   const taskList = document.querySelector(".task-list");
-  const taskUl = document.querySelector(".task-ul");
-  const tasksList = [];
+  const tasksList = users[currentUserIndex].tasks[String(currentDateTask)];
   submitBtn.title = "Add new task";
   function addTask(text) {
+    const taskUl = document.querySelector(".task-ul");
     const taskContainer = document.createElement("div");
     taskContainer.classList.add("task");
     const textNode = document.createTextNode(text);
@@ -232,15 +249,19 @@ function toDoList() {
     deleteIcon.style.marginRight = "10px";
   }
   submitBtn.addEventListener("click", function (e) {
+    checked();
+    deleteTask();
     e.preventDefault();
-    tasksList.push(taskInput.value);
     if (taskInput.value !== "") {
+      tasks[String(currentDateTask)].push(taskInput.value);
+      pushArrayToLocalStorage(users);
       addTask(taskInput.value);
       taskInput.value = "";
     }
-    checked();
-    deleteTask();
   });
+  checked();
+  deleteTask();
+
   function checked() {
     const checkboxes = document.querySelectorAll(".checkbox");
     checkboxes.forEach((checkbox) => {
@@ -260,9 +281,22 @@ function toDoList() {
     const deleteIcons = document.querySelectorAll(".fa-trash");
     deleteIcons.forEach((deleteIcon) => {
       deleteIcon.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(this.closest("div").querySelector("li").textContent);
+        tasks[currentDateTask].splice(
+          tasks[currentDateTask].indexOf(
+            this.closest("div").querySelector("li").textContent
+          ),
+          1
+        );
+        pushArrayToLocalStorage(users);
         this.closest("div").remove();
       });
     });
   }
 }
-// openModal();
+function clearTaskScreen() {
+  document.querySelectorAll(".task").forEach((item) => {
+    item.remove();
+  });
+}

@@ -112,6 +112,37 @@
     </div>
     <main class="main-screen-container d-none container">
       <h1 class="fw-bold main-heading text-center mt-3 mb-4"></h1>
+      <form
+        name="calendar-form"
+        class="row w-25 justify-content-center gap-2 m-auto mb-3"
+      >
+        <input
+          min="1900"
+          max="2200"
+          type="number"
+          class="form-control col text-center"
+          placeholder="year"
+        />
+        <select
+          name="month-select"
+          id="month-select"
+          class="form-select col text-center"
+        >
+          <option value="0">Jan</option>
+          <option value="1">Feb</option>
+          <option value="2">Mar</option>
+          <option value="3">Apr</option>
+          <option value="4">May</option>
+          <option value="5">Jun</option>
+          <option value="6">Jul</option>
+          <option value="7">Aug</option>
+          <option value="8">Sep</option>
+          <option value="9">Oct</option>
+          <option value="10">Nov</option>
+          <option value="11">Dec</option>
+        </select>
+        <button class="btn btn-danger col">Go there</button>
+      </form>
       <table class="table table-bordered text-center calendar">
         <thead>
           <tr class="bg-warning">
