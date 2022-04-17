@@ -121,7 +121,6 @@ const createCalendar = (
   }
   //Starting day of the month
   let firstDay = new Date(year, month).getDay();
-  console.log(firstDay);
   // creating all cells
   for (let i = 0; i < 5; i++) {
     // creates a table row
@@ -140,8 +139,11 @@ const createCalendar = (
         let cellText = document.createTextNode(date);
         cell.appendChild(cellText);
         row.appendChild(cell);
+        cell.classList.add("table-cell");
+        cell.dataset.date = new Date(year, month, date);
         if (currDay() === date) {
-          cell.style.background = "red";
+          cell.style.background = "rgb(196, 101, 101)";
+          cell.style.color = "#fff";
         }
         date++;
       }
@@ -153,8 +155,9 @@ const createCalendar = (
 
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
+
   // appends <table> into <body>
-  document.body.appendChild(tbl);
+  // document.body.appendChild(tbl);
 };
 
 const currDay = () => {
@@ -175,5 +178,19 @@ logInBtn.addEventListener("click", function (e) {
     displayMainScreen();
     mainHeadingContent();
     createCalendar();
+    openTaskWindow();
   }
 });
+function openTaskWindow() {
+  const tableCells = document.querySelectorAll(".table-cell");
+  tableCells.forEach((cell) => {
+    cell.addEventListener("click", function (e) {
+      console.log(cell.dataset.date);
+    });
+  });
+}
+function openModal() {
+  const modal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+  modal.show();
+}
+// openModal();

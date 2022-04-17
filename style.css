@@ -1,0 +1,12 @@
+.table {
+  box-shadow: inset 0px 0px 1px 1px #000;
+  border-collapse: collapse;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.table-cell:hover {
+  background-color: rgba(0, 0, 0, 0.144);
+  cursor: pointer;
+}
