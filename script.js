@@ -138,6 +138,8 @@ const createCalendar = (year = new Date().getFullYear(), month = new Date().getM
                 break;
             } else {
                 let cell = document.createElement("td");
+                cell.style.width = '50px'
+                cell.style.height = '50px'
                 let cellText = document.createTextNode(date);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
@@ -187,8 +189,19 @@ const createModal = () => {
     console.log(cells);
 
     cells.forEach(cell => cell.addEventListener('click', () => {
+        const modalTitle = document.querySelector('.modal-title')
+        modalTitle.textContent = ''
+        const span = document.createElement('span')
         let currDay = cell.dataset.date;
-        document.querySelector('.modal-title').textContent = `TODO LIST FOR ${currDay}`;
+        span.append(currDay)
+        span.style.color = '#A267AC'
+        const strong = document.createElement('strong');
+        strong.appendChild(document.createTextNode('TO DO LIST FOR '))
+        modalTitle.append(strong)
+        modalTitle.append(span)
+
+
+        // document.querySelector('.modal-title').textContent = `TODO LIST FOR ${currDay}`;
         let myModal = new bootstrap.Modal(document.querySelector('.modal'));
         myModal.show();
     }));
@@ -216,8 +229,6 @@ const toDoList = () => {
         todoList.addEventListener('click', removeTodo);
         // Clear or remove all todos
         clearBtn.addEventListener('click', clearTodoList);
-        // Search todo event
-        search.addEventListener('keyup', searchTodo);
     }
 
 

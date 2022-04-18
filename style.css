@@ -10,7 +10,9 @@ body {
     cursor: pointer;
 }
 
-.table-cells {}
+.table-cells {
+    line-height: 50px;
+}
 
 .table {
     max-width: 500px;
@@ -56,12 +58,12 @@ thead {
 .list-group-item i.fa-trash-alt {
     flex-grow: 0;
     cursor: pointer;
-    color: #dc3545;
+    color: #9254C8;
     order: 3;
 }
 
 .list-group-item i.fa-trash-alt:hover {
-    color: #af1e2c;
+    color: #E15FED;
 }
 
 .list-group-item .todo-text {
@@ -73,7 +75,7 @@ thead {
 .list-group-item.done i.fa-check-square {
     flex-grow: 0;
     cursor: pointer;
-    color: #28a745;
+    color: #9254C8;
     display: block;
 }
 

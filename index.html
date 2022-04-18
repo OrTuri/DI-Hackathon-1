@@ -60,6 +60,13 @@
         </section>
         <main class="main-screen-container container d-none">
             <h1 class="fw-bold main-heading text-center mt-3"></h1>
+            <div class="calenderChoosing d-flex justify-content-center">
+                <label for="year">Choose year</label>
+                <input type="number" id="year">
+                <label for="year">Choose month</label>
+                <input type="number" id="month">
+                <button>Check Calender</button>
+            </div>
             <table class="table text-center table-bordered">
                 <thead>
                     <tr>
@@ -78,7 +85,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
+                            <h5 class="modal-title"></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -86,7 +93,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-6 col-sm-8 mx-auto">
                                         <div class="card my-5">
-                                            <h5 class="card-header bg-primary text-white">
+                                            <h5 class="card-header bg-info text-white">
                                                 Todo List
                                             </h5>
                                             <div class="card-body">
@@ -99,14 +106,14 @@
                                                         <i class="far fa-trash-alt"></i>
                                                     </li>
                                                 </ul>
-                                                <button id="clearBtn" type="button" class="btn btn-dark btn-sm">Clear All</button>
+                                                <button id="clearBtn" type="button" class="btn btn-secondary btn-sm">Clear All</button>
                                             </div>
                                             <div class="card-footer">
                                                 <form id="form">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" id="todo" placeholder="Add new todo item">
                                                         <div class="input-group-append">
-                                                            <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add
+                                                            <button type="submit" class="btn btn-info"><i class="fas fa-plus"></i> Add
                 </button>
                                                         </div>
                                                     </div>
@@ -116,17 +123,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- </div> -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="./script.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
