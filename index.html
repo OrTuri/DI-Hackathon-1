@@ -1,139 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-    <script src="https://kit.fontawesome.com/b5f570606f.js" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/b5f570606f.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <section class="login-container col-lg-3 m-auto mt-4">
-            <h1 class="text-center mb-4 display-3 fw-bold">Log In</h1>
-            <form name="logInForm">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Username</span>
-                    <input name="username" required type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon2">Password</span>
-                    <input name="password" required type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="basic-addon2" />
-                </div>
-            </form>
-            <button type="submit" type="submit" class="btn btn-primary log-in-btn fw-bold d-block m-auto">
-            LOG IN!
-          </button>
-            <p class="text-center mt-4 lead">
-                Not a user?
-                <a class="link-primary sign-up-link" href="#">Sign Up now!</a>
-            </p>
-        </section>
-        <section class="sign-up-container col-lg-3 m-auto mt-4 d-none">
-            <h1 class="text-center mb-4 display-3 fw-bold">Sign Up</h1>
-            <form name="signUpForm">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Username</span>
-                    <input required type="text" class="form-control sign-up-username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                </div>
+      <section class="login-container col-lg-3 m-auto mt-4">
+        <h1 class="text-center mb-4 display-3 fw-bold">Log In</h1>
+        <form name="logInForm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Username</span>
+            <input
+              name="username"
+              required
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Password</span>
+            <input
+              name="password"
+              required
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              aria-label="password"
+              aria-describedby="basic-addon2"
+            />
+          </div>
+        </form>
+        <button
+          type="submit"
+          type="submit"
+          class="btn btn-primary log-in-btn fw-bold d-block m-auto"
+        >
+          LOG IN!
+        </button>
+        <p class="text-center mt-4 lead">
+          Not a user?
+          <a class="link-primary sign-up-link" href="#">Sign Up now!</a>
+        </p>
+      </section>
+      <section class="sign-up-container col-lg-3 m-auto mt-4 d-none">
+        <h1 class="text-center mb-4 display-3 fw-bold">Sign Up</h1>
+        <form name="signUpForm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Username</span>
+            <input
+              required
+              type="text"
+              class="form-control sign-up-username"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon2">Password</span>
-                    <input required type="password" class="form-control sign-up-password" placeholder="Password" aria-label="password" aria-describedby="basic-addon2" />
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon2">Name</span>
-                    <input required type="text" class="form-control sign-up-name" placeholder="Name" aria-label="password" aria-describedby="basic-addon2" />
-                </div>
-                <button type="submit" class="btn btn-primary sign-up-btn-submit fw-bold d-block m-auto">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Password</span>
+            <input
+              required
+              type="password"
+              class="form-control sign-up-password"
+              placeholder="Password"
+              aria-label="password"
+              aria-describedby="basic-addon2"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Name</span>
+            <input
+              required
+              type="text"
+              class="form-control sign-up-name"
+              placeholder="Name"
+              aria-label="password"
+              aria-describedby="basic-addon2"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary sign-up-btn-submit fw-bold d-block m-auto"
+          >
             Sign Up!
           </button>
-                <p class="text-center mt-4 lead">
-                    Already a user?
-                    <a class="link-primary log-in-link" href="#">Log In now!</a>
-                </p>
-            </form>
-        </section>
-        <main class="main-screen-container container d-none">
-            <h1 class="fw-bold main-heading text-center mt-3"></h1>
-            <div class="calenderChoosing d-flex justify-content-center">
-                <label for="year">Choose year</label>
-                <input type="number" id="year">
-                <label for="year">Choose month</label>
-                <input type="number" id="month">
-                <button>Check Calender</button>
-            </div>
-            <table class="table text-center table-bordered">
-                <thead>
-                    <tr>
-                        <th>Sun</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                    </tr>
-                </thead>
-                <tbody class="tBody text-center"></tbody>
-            </table>
-            <div class="modal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <p class="text-center mt-4 lead">
+            Already a user?
+            <a class="link-primary log-in-link" href="#">Log In now!</a>
+          </p>
+        </form>
+      </section>
+      <main class="main-screen-container container d-none">
+        <h1 class="fw-bold main-heading text-center mt-3"></h1>
+        <div class="calenderChoosing d-flex justify-content-center"></div>
+        <table class="table text-center table-bordered">
+          <thead>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody class="tBody text-center"></tbody>
+        </table>
+        <div class="modal fade" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-8 mx-auto">
+                      <div class="card my-5">
+                        <h5 class="card-header bg-info text-white">
+                          Todo List
+                        </h5>
+                        <div class="card-body">
+                          <ul class="list-group mb-3">
+                            <li class="list-group-item">
+                              <i class="far fa-square done-icon"></i>
+                              <i class="far fa-check-square done-icon"></i>
+                              <span class="todo-text"
+                                >Here is a sample for todo</span
+                              >
+                              <i class="far fa-trash-alt"></i>
+                            </li>
+                          </ul>
+                          <button
+                            id="clearBtn"
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                          >
+                            Clear All
+                          </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-6 col-sm-8 mx-auto">
-                                        <div class="card my-5">
-                                            <h5 class="card-header bg-info text-white">
-                                                Todo List
-                                            </h5>
-                                            <div class="card-body">
-
-                                                <ul class="list-group mb-3">
-                                                    <li class="list-group-item">
-                                                        <i class="far fa-square done-icon"></i>
-                                                        <i class="far fa-check-square done-icon"></i>
-                                                        <span class="todo-text">Here is a sample for todo</span>
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <button id="clearBtn" type="button" class="btn btn-secondary btn-sm">Clear All</button>
-                                            </div>
-                                            <div class="card-footer">
-                                                <form id="form">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="todo" placeholder="Add new todo item">
-                                                        <div class="input-group-append">
-                                                            <button type="submit" class="btn btn-info"><i class="fas fa-plus"></i> Add
-                </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="card-footer">
+                          <form id="form">
+                            <div class="input-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="todo"
+                                placeholder="Add new todo item"
+                              />
+                              <div class="input-group-append">
+                                <button type="submit" class="btn btn-info">
+                                  <i class="fas fa-plus"></i> Add
+                                </button>
+                              </div>
                             </div>
+                          </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
             </div>
-        </main>
+          </div>
+        </div>
+      </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="./script.js"></script>
-</body>
-
+  </body>
 </html>
