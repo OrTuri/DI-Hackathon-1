@@ -141,8 +141,10 @@ const createCalendar = (year = new Date().getFullYear(), month = new Date().getM
                 let cellText = document.createTextNode(date);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
+                cell.classList = 'table-cells'
                 if (currDay() === date) {
-                    cell.style.background = 'red'
+                    cell.style.background = '#D18CE0'
+                    cell.style.color = 'white'
                 }
                 date++;
             }
@@ -154,8 +156,7 @@ const createCalendar = (year = new Date().getFullYear(), month = new Date().getM
 
     // put the <tbody> in the <table>
     tbl.appendChild(tblBody);
-    // appends <table> into <body>
-    document.body.appendChild(tbl);
+
 };
 
 const currDay = () => {
@@ -173,8 +174,10 @@ logInBtn.addEventListener("click", function(e) {
             document.forms.logInForm.password.value
         )
     ) {
-        displayMainScreen();
-        mainHeadingContent();
-        createCalendar();
+
+        // mainHeadingContent();
+
     }
 });
+displayMainScreen();
+createCalendar();

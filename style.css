@@ -1,0 +1,25 @@
+body {
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+    height: 100vh;
+}
+
+.table-cells:hover {
+    background-color: #a57cb6;
+    color: #fff;
+    cursor: pointer;
+}
+
+.table {
+    max-width: 500px;
+    height: 500px;
+    margin: auto;
+    border: 1px solid black;
+}
+
+thead {
+    background-color: #D18CE0;
+    color: white;
+}
+
+@media screen {}
