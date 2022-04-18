@@ -91,6 +91,11 @@ function displayMainScreen() {
   signUpScreen.classList.add("d-none");
   mainScreen.classList.toggle("d-none");
 }
+function hideMainScreen() {
+  logInScreen.classList.remove("d-none");
+  signUpScreen.classList.add("d-none");
+  mainScreen.classList.add("d-none");
+}
 // Function that displays the main heading according to user's name
 function mainHeadingContent() {
   const hour = new Date().getHours();
@@ -175,17 +180,9 @@ function createCurrentDateTitle(date = new Date()) {
     year: "numeric",
     month: "long",
   });
-  const body = document.querySelector("body");
-  let textNode = "Current date: \n";
-  const currentDateTitleContainer = document.createElement("div");
-  currentDateTitleContainer.append(textNode);
-  textNode = document.createTextNode(date);
-  currentDateTitleContainer.append(textNode);
-  currentDateTitleContainer.style.textAlign = "center";
-  currentDateTitleContainer.classList.add("mt-4");
-  currentDateTitleContainer.classList.add("lead");
-  body.append(currentDateTitleContainer);
-  currentDateTitleContainer.classList.add("dateTitle");
+  const container = document.querySelector(".dateTitle");
+  let textNode = "Current date: \n " + date;
+  container.append(textNode);
 }
 
 // Actions that will happend after the user click on the "log in" button
@@ -325,7 +322,7 @@ function removeCurrentCalendar() {
   const tableBody2 = document.createElement("tbody");
   tableBody2.className = "tBody text-center";
   document.querySelector(".table").append(tableBody2);
-  document.querySelector(".dateTitle").remove();
+  document.querySelector(".dateTitle").textContent = "";
 }
 const calendarForm = document.forms.calendarForm;
 calendarForm.addEventListener("submit", function (e) {
@@ -336,5 +333,11 @@ calendarForm.addEventListener("submit", function (e) {
   removeCurrentCalendar();
   createCalendar(year, month);
   createCurrentDateTitle(new Date(year, month));
+  createModal();
+});
+document.querySelector(".logout-btn").addEventListener("click", function (e) {
+  currentUserIndex = undefined;
+  hideMainScreen();
+  removeCurrentCalendar();
   createModal();
 });
