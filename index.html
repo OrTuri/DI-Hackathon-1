@@ -151,13 +151,13 @@
         <table class="table text-center table-bordered">
           <thead>
             <tr>
-              <th>Sun</th>
-              <th>Mon</th>
-              <th>Tue</th>
-              <th>Wed</th>
-              <th>Thu</th>
-              <th>Fri</th>
-              <th>Sat</th>
+              <th class="day">Sun</th>
+              <th class="day">Mon</th>
+              <th class="day">Tue</th>
+              <th class="day">Wed</th>
+              <th class="day">Thu</th>
+              <th class="day">Fri</th>
+              <th class="day">Sat</th>
             </tr>
           </thead>
           <tbody class="tBody text-center"></tbody>
@@ -226,7 +226,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
                   Close
@@ -236,7 +236,9 @@
           </div>
         </div>
         <div class="dateTitle lead text-center mt-2"></div>
-        <button class="btn btn-warning fw-bold logout-btn d-block m-auto mt-4">
+        <button
+          class="btn btn-secondary fw-bold logout-btn d-block m-auto mt-4"
+        >
           LOG OUT
         </button>
       </main>

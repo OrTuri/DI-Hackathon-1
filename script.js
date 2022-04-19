@@ -11,6 +11,7 @@ const logInBtn = document.querySelector(".log-in-btn");
 const signUpForm = document.forms.signUpForm;
 const mainHeading = document.querySelector(".main-heading");
 const calendarTable = document.querySelector(".table");
+let date;
 const users = localStorage.getItem("data")
   ? JSON.parse(localStorage.getItem("data"))
   : [];
@@ -40,7 +41,6 @@ function checkIfUsernameExistAlready(username, array) {
 function signUpDataPushToArray(form, array) {
   const object = {};
   [...form.elements].forEach((input) => {
-    console.log(input);
     object[input.className.slice(21)] = input.value;
     input.value = "";
   });
@@ -217,7 +217,7 @@ const createModal = () => {
       strong.appendChild(document.createTextNode("TO DO LIST FOR "));
       modalTitle.append(strong);
       modalTitle.append(span);
-
+      date = cell.dataset.date;
       // document.querySelector('.modal-title').textContent = `TODO LIST FOR ${currDay}`;
       let myModal = new bootstrap.Modal(document.querySelector(".modal"));
       myModal.show();
@@ -226,18 +226,28 @@ const createModal = () => {
 
   toDoList();
 };
-
 const toDoList = () => {
   // Define all UI variable
   const todoList = document.querySelector(".list-group");
   const form = document.querySelector("#form");
   const todoInput = document.querySelector("#todo");
   const clearBtn = document.querySelector("#clearBtn");
-  const search = document.querySelector("#search");
-
+  function pushTaskToArray(task) {
+    if (users[currentUserIndex].hasOwnProperty("tasks")) {
+      if (users[currentUserIndex].tasks.hasOwnProperty(date)) {
+        users[currentUserIndex].tasks[date].push(task);
+      } else {
+        users[currentUserIndex].tasks[date] = [];
+        users[currentUserIndex].tasks[date].push(task);
+      }
+    } else {
+      users[currentUserIndex].tasks = {};
+      users[currentUserIndex].tasks[date] = [];
+      users[currentUserIndex].tasks[date].push(task);
+    }
+  }
   // Load all event listners
   allEventListners();
-
   // Functions of all event listners
   function allEventListners() {
     // Add todo event
@@ -269,7 +279,8 @@ const toDoList = () => {
       li.appendChild(span);
       // Append li to ul (todoList)
       todoList.appendChild(li);
-
+      pushTaskToArray(todoInput.value);
+      pushArrayToLocalStorage(users);
       // Clear input
       todoInput.value = "";
     } else {
@@ -301,8 +312,8 @@ const toDoList = () => {
   function clearTodoList() {
     todoList.innerHTML = "";
   }
-
   // Search todo function
+  // Check if we need to remove this function later
   function searchTodo(e) {
     const text = e.target.value.toLowerCase();
     const allItem = document.querySelectorAll(".list-group-item");
@@ -339,5 +350,4 @@ document.querySelector(".logout-btn").addEventListener("click", function (e) {
   currentUserIndex = undefined;
   hideMainScreen();
   removeCurrentCalendar();
-  createModal();
 });
