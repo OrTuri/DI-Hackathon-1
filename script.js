@@ -221,11 +221,42 @@ const createModal = () => {
       // document.querySelector('.modal-title').textContent = `TODO LIST FOR ${currDay}`;
       let myModal = new bootstrap.Modal(document.querySelector(".modal"));
       myModal.show();
+      removeTasksFromDisplay();
+      if (users[currentUserIndex].hasOwnProperty("tasks")) {
+        if (users[currentUserIndex].tasks.hasOwnProperty(date)) {
+          loadTasks(users[currentUserIndex].tasks[date]);
+        }
+      }
     })
   );
 
   toDoList();
 };
+function loadTasks(tasksArray) {
+  const todoList = document.querySelector(".list-group");
+  tasksArray.forEach((task) => {
+    // Create li element
+    const li = document.createElement("li");
+    // Add class
+    li.className = "list-group-item";
+    // Add complete and remove icon
+    li.innerHTML = `<i class="far fa-square done-icon"></i>
+                      <i class="far fa-check-square done-icon"></i>
+                      <i class="far fa-trash-alt"></i>`;
+    // Create span element
+    const span = document.createElement("span");
+    // Add class
+    span.className = "todo-text";
+    // Create text node and append to span
+    span.appendChild(document.createTextNode(task));
+    // Append span to li
+    li.appendChild(span);
+    // Append li to ul (todoList)
+    todoList.appendChild(li);
+    // Clear input
+  });
+}
+
 const toDoList = () => {
   // Define all UI variable
   const todoList = document.querySelector(".list-group");
@@ -296,6 +327,11 @@ const toDoList = () => {
     if (e.target.classList.contains("fa-trash-alt")) {
       if (confirm("Are you sure")) {
         e.target.parentElement.remove();
+        users[currentUserIndex].tasks[date].splice(
+          users[currentUserIndex].tasks[date].indexOf(this.innerText),
+          1
+        );
+        pushArrayToLocalStorage(users);
       }
     }
 
@@ -307,7 +343,6 @@ const toDoList = () => {
       e.target.parentElement.classList.toggle("done");
     }
   }
-
   // Clear or remove all todos function
   function clearTodoList() {
     todoList.innerHTML = "";
@@ -351,3 +386,9 @@ document.querySelector(".logout-btn").addEventListener("click", function (e) {
   hideMainScreen();
   removeCurrentCalendar();
 });
+function removeTasksFromDisplay() {
+  const tasks = document.querySelectorAll(".list-group-item");
+  tasks.forEach((task) => {
+    task.remove();
+  });
+}
