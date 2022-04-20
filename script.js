@@ -328,7 +328,9 @@ const toDoList = () => {
       if (confirm("Are you sure")) {
         e.target.parentElement.remove();
         users[currentUserIndex].tasks[date].splice(
-          users[currentUserIndex].tasks[date].indexOf(this.innerText),
+          users[currentUserIndex].tasks[date].indexOf(
+            e.target.parentElement.querySelector(".todo-text").innerText
+          ),
           1
         );
         pushArrayToLocalStorage(users);
