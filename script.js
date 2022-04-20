@@ -1,5 +1,4 @@
 "use strict";
-
 // Selecting different HTML elements
 const signUpLink = document.querySelector(".sign-up-link");
 const logInLink = document.querySelector(".log-in-link");
@@ -46,7 +45,6 @@ function signUpDataPushToArray(form, array) {
   });
   array.push(object);
 }
-
 // Function to push the array into local storage
 function pushArrayToLocalStorage(array) {
   localStorage.setItem("data", JSON.stringify(array));
@@ -109,12 +107,12 @@ function mainHeadingContent() {
     users[currentUserIndex].name.slice(1).toLowerCase()
   }, have a good ${greeting}`;
 }
-
 // Function to create the user's calendar
 const createCalendar = (
   year = new Date().getFullYear(),
   month = new Date().getMonth()
 ) => {
+  let daysOver = 1;
   const fullDate = new Date(year, month);
   let tbl = document.querySelector(".table-bordered");
   let tblBody = document.querySelector(".tBody");
@@ -126,19 +124,28 @@ const createCalendar = (
   }
   //Starting day of the month
   let firstDay = new Date(year, month).getDay();
+  let monthBefore = daysInMonth(month - 1, year) - firstDay + 1;
   // creating all cells
   for (let i = 0; i < 5; i++) {
     // creates a table row
     let row = document.createElement("tr");
-
     for (let j = 0; j < 7; j++) {
       if (i === 0 && j < firstDay) {
         let cell = document.createElement("td");
-        let cellText = document.createTextNode(".");
+        let cellText = document.createTextNode(monthBefore);
+        monthBefore++;
+        cell.style.lineHeight = "50px";
+        cell.style.color = "#a3a3a3";
         cell.appendChild(cellText);
         row.appendChild(cell);
       } else if (date > daysInMonth(month, year)) {
-        break;
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode(daysOver);
+        daysOver++;
+        cell.style.lineHeight = "50px";
+        cell.style.color = "#a3a3a3";
+        cell.appendChild(cellText);
+        row.appendChild(cell);
       } else {
         let cell = document.createElement("td");
         cell.style.maxWidth = "100px";
@@ -162,15 +169,12 @@ const createCalendar = (
         date++;
       }
     }
-
     // add the row to the end of the table body
     tblBody.appendChild(row);
   }
-
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
 };
-
 const currDay = () => {
   let currDay = new Date();
   return currDay.getDate();
@@ -184,7 +188,6 @@ function createCurrentDateTitle(date = new Date()) {
   let textNode = "Current date: \n " + date;
   container.append(textNode);
 }
-
 // Actions that will happend after the user click on the "log in" button
 logInBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -202,7 +205,6 @@ logInBtn.addEventListener("click", function (e) {
     createModal();
   }
 });
-
 const createModal = () => {
   let cells = [...document.querySelectorAll(".table-cells")];
   cells.forEach((cell) =>
@@ -230,7 +232,6 @@ const createModal = () => {
     })
   );
 };
-
 function loadTasks(tasksArray) {
   const todoList = document.querySelector(".list-group");
   tasksArray.forEach((task) => {
@@ -258,7 +259,6 @@ function loadTasks(tasksArray) {
     }
   });
 }
-
 const toDoList = () => {
   // Define all UI variable
   const todoList = document.querySelector(".list-group");
@@ -290,11 +290,9 @@ const toDoList = () => {
     // Clear or remove all todos
     clearBtn.addEventListener("click", clearTodoList);
   }
-
   // Add todo item function
   function addTodo(e) {
     e.preventDefault();
-    console.log(todoInput.value);
     if (todoInput.value !== "") {
       // Create li element
       const li = document.createElement("li");
@@ -322,7 +320,6 @@ const toDoList = () => {
       alert("Please add todo");
     }
   }
-
   // Remove and complete todo item function
   function removeTodo(e) {
     // Remove todo
@@ -340,11 +337,9 @@ const toDoList = () => {
           }),
           1
         );
-
         pushArrayToLocalStorage(users);
       }
     }
-
     // Complete todo
     if (
       e.target.classList.contains("todo-text") ||
@@ -383,7 +378,6 @@ calendarForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const year = calendarForm.year.value;
   const month = calendarForm.month.value;
-  console.log("year:", year, "month:", month);
   removeCurrentCalendar();
   createCalendar(year, month);
   createCurrentDateTitle(new Date(year, month));
