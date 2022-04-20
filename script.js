@@ -116,7 +116,7 @@ const createCalendar = (
   month = new Date().getMonth()
 ) => {
   const fullDate = new Date(year, month);
-  let tbl = document.querySelector(".table");
+  let tbl = document.querySelector(".table-bordered");
   let tblBody = document.querySelector(".tBody");
 
   let date = 1;
@@ -204,6 +204,7 @@ logInBtn.addEventListener("click", function (e) {
 });
 
 const createModal = () => {
+  toDoList();
   let cells = [...document.querySelectorAll(".table-cells")];
   cells.forEach((cell) =>
     cell.addEventListener("click", () => {
@@ -229,8 +230,6 @@ const createModal = () => {
       }
     })
   );
-
-  toDoList();
 };
 function loadTasks(tasksArray) {
   const todoList = document.querySelector(".list-group");
@@ -248,12 +247,15 @@ function loadTasks(tasksArray) {
     // Add class
     span.className = "todo-text";
     // Create text node and append to span
-    span.appendChild(document.createTextNode(task));
+    span.appendChild(document.createTextNode(task[0]));
     // Append span to li
     li.appendChild(span);
     // Append li to ul (todoList)
     todoList.appendChild(li);
     // Clear input
+    if (task[1]) {
+      li.classList.toggle("done");
+    }
   });
 }
 
@@ -266,15 +268,15 @@ const toDoList = () => {
   function pushTaskToArray(task) {
     if (users[currentUserIndex].hasOwnProperty("tasks")) {
       if (users[currentUserIndex].tasks.hasOwnProperty(date)) {
-        users[currentUserIndex].tasks[date].push(task);
+        users[currentUserIndex].tasks[date].push([task, false]);
       } else {
         users[currentUserIndex].tasks[date] = [];
-        users[currentUserIndex].tasks[date].push(task);
+        users[currentUserIndex].tasks[date].push([task, false]);
       }
     } else {
       users[currentUserIndex].tasks = {};
       users[currentUserIndex].tasks[date] = [];
-      users[currentUserIndex].tasks[date].push(task);
+      users[currentUserIndex].tasks[date].push([task, false]);
     }
   }
   // Load all event listners
@@ -291,6 +293,7 @@ const toDoList = () => {
 
   // Add todo item function
   function addTodo(e) {
+    console.log(todoInput.value);
     if (todoInput.value !== "") {
       // Create li element
       const li = document.createElement("li");
@@ -338,30 +341,27 @@ const toDoList = () => {
     }
 
     // Complete todo
-    if (e.target.classList.contains("todo-text")) {
+    if (
+      e.target.classList.contains("todo-text") ||
+      e.target.classList.contains("done-icon")
+    ) {
       e.target.parentElement.classList.toggle("done");
-    }
-    if (e.target.classList.contains("done-icon")) {
-      e.target.parentElement.classList.toggle("done");
+      users[currentUserIndex].tasks[date].forEach((taskArr) => {
+        if (
+          taskArr[0] ===
+          e.target.parentElement.querySelector(".todo-text").innerText
+        ) {
+          taskArr[1] = taskArr[1] ? false : true;
+        }
+      });
+      pushArrayToLocalStorage(users);
     }
   }
   // Clear or remove all todos function
   function clearTodoList() {
     todoList.innerHTML = "";
-  }
-  // Search todo function
-  // Check if we need to remove this function later
-  function searchTodo(e) {
-    const text = e.target.value.toLowerCase();
-    const allItem = document.querySelectorAll(".list-group-item");
-    for (let task of allItem) {
-      const item = task.textContent;
-      if (item.toLowerCase().indexOf(text) != -1) {
-        task.style.display = "flex";
-      } else {
-        task.style.display = "none";
-      }
-    }
+    users[currentUserIndex].tasks[date] = [];
+    pushArrayToLocalStorage(users);
   }
 };
 function removeCurrentCalendar() {
@@ -369,7 +369,7 @@ function removeCurrentCalendar() {
   tableBody.remove();
   const tableBody2 = document.createElement("tbody");
   tableBody2.className = "tBody text-center";
-  document.querySelector(".table").append(tableBody2);
+  document.querySelector(".table-bordered").append(tableBody2);
   document.querySelector(".dateTitle").textContent = "";
 }
 const calendarForm = document.forms.calendarForm;
