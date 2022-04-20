@@ -141,8 +141,8 @@ const createCalendar = (
         break;
       } else {
         let cell = document.createElement("td");
-        cell.style.width = "50px";
-        cell.style.height = "50px";
+        cell.style.maxWidth = "100px";
+        cell.style.maxHeight = "100px";
         let cellText = document.createTextNode(date);
         cell.appendChild(cellText);
         row.appendChild(cell);
@@ -204,7 +204,6 @@ logInBtn.addEventListener("click", function (e) {
 });
 
 const createModal = () => {
-  toDoList();
   let cells = [...document.querySelectorAll(".table-cells")];
   cells.forEach((cell) =>
     cell.addEventListener("click", () => {
@@ -231,6 +230,7 @@ const createModal = () => {
     })
   );
 };
+
 function loadTasks(tasksArray) {
   const todoList = document.querySelector(".list-group");
   tasksArray.forEach((task) => {
@@ -293,6 +293,7 @@ const toDoList = () => {
 
   // Add todo item function
   function addTodo(e) {
+    e.preventDefault();
     console.log(todoInput.value);
     if (todoInput.value !== "") {
       // Create li element
@@ -320,8 +321,6 @@ const toDoList = () => {
     } else {
       alert("Please add todo");
     }
-
-    e.preventDefault();
   }
 
   // Remove and complete todo item function
@@ -331,11 +330,17 @@ const toDoList = () => {
       if (confirm("Are you sure")) {
         e.target.parentElement.remove();
         users[currentUserIndex].tasks[date].splice(
-          users[currentUserIndex].tasks[date].indexOf(
-            e.target.parentElement.querySelector(".todo-text").innerText
-          ),
+          users[currentUserIndex].tasks[date].findIndex((element, i) => {
+            if (
+              element[0] ===
+              e.target.parentElement.querySelector(".todo-text").innerText
+            ) {
+              return true;
+            }
+          }),
           1
         );
+
         pushArrayToLocalStorage(users);
       }
     }
@@ -364,6 +369,7 @@ const toDoList = () => {
     pushArrayToLocalStorage(users);
   }
 };
+toDoList();
 function removeCurrentCalendar() {
   const tableBody = document.querySelector(".tBody");
   tableBody.remove();
