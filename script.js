@@ -11,6 +11,7 @@ const signUpForm = document.forms.signUpForm;
 const mainHeading = document.querySelector(".main-heading");
 const calendarTable = document.querySelector(".table");
 let date;
+let fullDate;
 const users = localStorage.getItem("data") ?
     JSON.parse(localStorage.getItem("data")) : [];
 let currentUserIndex;
@@ -98,17 +99,15 @@ function hideMainScreen() {
 function mainHeadingContent() {
     const hour = new Date().getHours();
     let greeting;
-    if (hour < 12 && hour > 6) greeting = "morning";
-    else if (hour > 12 && hour < 18) greeting = "afternoon";
-    else if (hour > 18 && hour < 24) greeting = "evening";
+    if (hour > 6 && hour < 12) greeting = "morning";
+    else if (hour >= 12 && hour < 18) greeting = "afternoon";
+    else if (hour >= 18 && hour < 24) greeting = "evening";
     else greeting = "night";
 
     // Create capital letter for first and surname
-    mainHeading.textContent = `Hello ${users[currentUserIndex].name[0].toUpperCase() +
-        users[currentUserIndex].name.slice(1, users[currentUserIndex].name.split('').indexOf(' ') + 1).toLowerCase() +
-        users[currentUserIndex].name.slice(users[currentUserIndex].name.split('').indexOf(' ') + 1, (users[currentUserIndex].name.split('').indexOf(' ') + 1) + 1).toUpperCase() + 
-    users[currentUserIndex].name.slice((users[currentUserIndex].name.split('').indexOf(' ') + 1) + 1).toLowerCase() 
-        }, have a good ${greeting}`;
+    let name = users[currentUserIndex].name;
+    name = name.split(' ').map(a => a.charAt(0).toUpperCase() + a.slice(1)).join(' ');
+    mainHeading.textContent = `Hello ${name}, have a good ${greeting}`;
 
 }
 // Function to create the user's calendar
@@ -117,7 +116,9 @@ const createCalendar = (
     month = new Date().getMonth()
 ) => {
     let daysOver = 1;
-    const fullDate = new Date(year, month);
+    fullDate = new Date(year, month);
+    debugger;
+    createCurrentDateTitle(fullDate);
     let tbl = document.querySelector(".table-bordered");
     let tblBody = document.querySelector(".tBody");
 
@@ -175,6 +176,7 @@ const createCalendar = (
         // add the row to the end of the table body
         tblBody.appendChild(row);
     }
+
     // put the <tbody> in the <table>
     tbl.appendChild(tblBody);
 };
@@ -205,7 +207,6 @@ logInBtn.addEventListener("click", function(e) {
         mainHeadingContent();
         displayMainScreen();
         createCalendar();
-        createCurrentDateTitle();
         createModal();
     }
 });
@@ -387,7 +388,6 @@ calendarForm.addEventListener("submit", function(e) {
     const month = calendarForm.month.value;
     removeCurrentCalendar();
     createCalendar(year, month);
-    createCurrentDateTitle(new Date(year, month));
     createModal();
 });
 document.querySelector(".logout-btn").addEventListener("click", function(e) {
@@ -401,4 +401,12 @@ function removeTasksFromDisplay() {
     tasks.forEach((task) => {
         task.remove();
     });
+}
+
+// Switch prev and next month with the arrows
+function switchMonth(num) {
+    let year = fullDate.getFullYear();
+    let month = fullDate.getMonth();
+    removeCurrentCalendar();
+    createCalendar(year, month + (num));
 }
