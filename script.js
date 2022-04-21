@@ -98,16 +98,24 @@ function hideMainScreen() {
 }
 // Function that displays the main heading according to user's name
 function mainHeadingContent() {
+  function firstLetterUpper(string) {
+    return string
+      .split(" ")
+      .map((item) => {
+        return item.at(0).toUpperCase() + item.slice(1).toLowerCase();
+      })
+      .join(" ");
+  }
+  const name = firstLetterUpper(users[currentUserIndex].name);
   const hour = new Date().getHours();
+  console.log(hour);
+
   let greeting;
   if (hour < 12 && hour > 6) greeting = "morning";
-  else if (hour > 12 && hour < 18) greeting = "afternoon";
-  else if (hour > 18 && hour < 24) greeting = "evening";
+  else if (hour >= 12 && hour <= 18) greeting = "afternoon";
+  else if (hour > 18 && hour < 0) greeting = "evening";
   else greeting = "night";
-  mainHeading.textContent = `Hello ${
-    users[currentUserIndex].name[0].toUpperCase() +
-    users[currentUserIndex].name.slice(1).toLowerCase()
-  }, have a good ${greeting}`;
+  mainHeading.textContent = `Hello ${name}, have a good ${greeting}`;
 }
 // Function to create the user's calendar
 const createCalendar = (

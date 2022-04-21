@@ -2,6 +2,7 @@ body {
   /* box-sizing: border-box; */
   font-family: "Arial", sans-serif;
   height: 100vh;
+  font-family: sans-serif;
 }
 
 .table-cells:hover {
