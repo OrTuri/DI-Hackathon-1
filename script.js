@@ -10,6 +10,8 @@ const logInBtn = document.querySelector(".log-in-btn");
 const signUpForm = document.forms.signUpForm;
 const mainHeading = document.querySelector(".main-heading");
 const calendarTable = document.querySelector(".table");
+let currentYear;
+let currentMonth;
 let date;
 const users = localStorage.getItem("data")
   ? JSON.parse(localStorage.getItem("data"))
@@ -112,6 +114,9 @@ const createCalendar = (
   year = new Date().getFullYear(),
   month = new Date().getMonth()
 ) => {
+  currentYear = year;
+  currentMonth = month;
+  createCurrentDateTitle(new Date(year, month));
   let daysOver = 1;
   const fullDate = new Date(year, month);
   let tbl = document.querySelector(".table-bordered");
@@ -201,7 +206,6 @@ logInBtn.addEventListener("click", function (e) {
     mainHeadingContent();
     displayMainScreen();
     createCalendar();
-    createCurrentDateTitle();
     createModal();
   }
 });
@@ -380,7 +384,6 @@ calendarForm.addEventListener("submit", function (e) {
   const month = calendarForm.month.value;
   removeCurrentCalendar();
   createCalendar(year, month);
-  createCurrentDateTitle(new Date(year, month));
   createModal();
 });
 document.querySelector(".logout-btn").addEventListener("click", function (e) {
@@ -394,3 +397,15 @@ function removeTasksFromDisplay() {
     task.remove();
   });
 }
+const nextMonthBtn = document.querySelector(".next-month");
+const prevMonthBtn = document.querySelector(".prev-month");
+nextMonthBtn.addEventListener("click", function (e) {
+  removeCurrentCalendar();
+  createCalendar(currentYear, currentMonth + 1);
+  createModal();
+});
+prevMonthBtn.addEventListener("click", function (e) {
+  removeCurrentCalendar();
+  createCalendar(currentYear, currentMonth - 1);
+  createModal();
+});
