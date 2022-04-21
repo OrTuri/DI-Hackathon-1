@@ -103,3 +103,6 @@ thead {
 .calendar-form {
   max-width: 450px;
 }
+.table {
+  table-layout: fixed;
+}
