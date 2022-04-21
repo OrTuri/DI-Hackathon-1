@@ -1,133 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/b5f570606f.js"
-      crossorigin="anonymous"
-    ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/b5f570606f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container">
-      <section class="login-container col-lg-3 m-auto mt-4">
-        <h1 class="text-center mb-4 display-3 fw-bold">Log In</h1>
-        <form name="logInForm">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Username</span>
-            <input
-              name="username"
-              required
-              type="text"
-              class="form-control"
-              placeholder="Username"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Password</span>
-            <input
-              name="password"
-              required
-              type="password"
-              class="form-control"
-              placeholder="Password"
-              aria-label="password"
-              aria-describedby="basic-addon2"
-            />
-          </div>
-          <button
-            type="submit"
-            type="submit"
-            class="btn btn-primary log-in-btn fw-bold d-block m-auto"
-          >
+        <section class="login-container col-lg-3 m-auto mt-4">
+            <h1 class="text-center mb-4 display-3 fw-bold">Log In</h1>
+            <form name="logInForm">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Username</span>
+                    <input name="username" required type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Password</span>
+                    <input name="password" required type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="basic-addon2" />
+                </div>
+                <button type="submit" type="submit" class="btn btn-primary log-in-btn fw-bold d-block m-auto">
             LOG IN!
           </button>
-        </form>
-        <p class="text-center mt-4 lead">
-          Not a user?
-          <a class="link-primary sign-up-link" href="#">Sign Up now!</a>
-        </p>
-      </section>
-      <section class="sign-up-container col-lg-3 m-auto mt-4 d-none">
-        <h1 class="text-center mb-4 display-3 fw-bold">Sign Up</h1>
-        <form name="signUpForm">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Username</span>
-            <input
-              required
-              type="text"
-              class="form-control sign-up-username"
-              placeholder="Username"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
+            </form>
+            <p class="text-center mt-4 lead">
+                Not a user?
+                <a class="link-primary sign-up-link" href="#">Sign Up now!</a>
+            </p>
+        </section>
+        <section class="sign-up-container col-lg-3 m-auto mt-4 d-none">
+            <h1 class="text-center mb-4 display-3 fw-bold">Sign Up</h1>
+            <form name="signUpForm">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Username</span>
+                    <input required type="text" class="form-control sign-up-username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Password</span>
-            <input
-              required
-              type="password"
-              class="form-control sign-up-password"
-              placeholder="Password"
-              aria-label="password"
-              aria-describedby="basic-addon2"
-            />
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Name</span>
-            <input
-              required
-              type="text"
-              class="form-control sign-up-name"
-              placeholder="Name"
-              aria-label="password"
-              aria-describedby="basic-addon2"
-            />
-          </div>
-          <button
-            type="submit"
-            class="btn btn-primary sign-up-btn-submit fw-bold d-block m-auto"
-          >
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Password</span>
+                    <input required type="password" class="form-control sign-up-password" placeholder="Password" aria-label="password" aria-describedby="basic-addon2" />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Name</span>
+                    <input required type="text" class="form-control sign-up-name" placeholder="Name" aria-label="password" aria-describedby="basic-addon2" />
+                </div>
+                <button type="submit" class="btn btn-primary sign-up-btn-submit fw-bold d-block m-auto">
             Sign Up!
           </button>
-          <p class="text-center mt-4 lead">
-            Already a user?
-            <a class="link-primary log-in-link" href="#">Log In now!</a>
-          </p>
-        </form>
-      </section>
-      <main class="main-screen-container container d-none">
-        <h1 class="fw-bold main-heading text-center mt-3"></h1>
-        <form
-          class="calendar-form row m-auto mb-3 gap-2"
-          name="calendarForm"
-          class="row w-lg-50 justify-content-center gap-2 m-auto mb-3"
-        >
-          <input
-            name="year"
-            min="1900"
-            max="2100"
-            type="number"
-            class="form-control col text-center"
-            placeholder="Choose Year"
-          />
-          <select
-            name="month"
-            id="month-select"
-            class="form-select col text-center"
-          >
+                <p class="text-center mt-4 lead">
+                    Already a user?
+                    <a class="link-primary log-in-link" href="#">Log In now!</a>
+                </p>
+            </form>
+        </section>
+        <main class="main-screen-container container d-none">
+            <h1 class="fw-bold main-heading text-center mt-3"></h1>
+            <form class="calendar-form row m-auto mb-3 gap-2" name="calendarForm" class="row w-lg-50 justify-content-center gap-2 m-auto mb-3">
+                <input name="year" min="1900" max="2100" type="number" class="form-control col text-center" placeholder="Choose Year" />
+                <select name="month" id="month-select" class="form-select col text-center">
             <option value="" disabled selected>Choose Month</option>
             <option value="0">January</option>
             <option value="1">February</option>
@@ -142,65 +77,56 @@
             <option value="10">November</option>
             <option value="11">December</option>
           </select>
-          <button type="submit" class="btn btn-danger col" name="formBtn">
+                <button type="submit" class="btn btn-danger col" name="formBtn">
             Go there
           </button>
-        </form>
-        <div class="calenderChoosing d-flex justify-content-center"></div>
-        <div class="table-responsive">
-          <table class="table text-center table-bordered m-auto">
-            <thead>
-              <tr>
-                <th class="day">Sun</th>
-                <th class="day">Mon</th>
-                <th class="day">Tue</th>
-                <th class="day">Wed</th>
-                <th class="day">Thu</th>
-                <th class="day">Fri</th>
-                <th class="day">Sat</th>
-              </tr>
-            </thead>
-            <tbody class="tBody text-center"></tbody>
-          </table>
-          <div
-            class="moveMonthBtns d-flex justify-content-between gap-3 mt-1 ms-auto me-auto"
-            style="max-width: 500px"
-          >
-            <div class="btn btn-danger prev-month">
-              <i class="fa-solid fa-angles-left"></i>
+            </form>
+            <div class="calenderChoosing d-flex justify-content-center"></div>
+            <div class="table-responsive">
+                <table class="table text-center table-bordered m-auto">
+                    <thead>
+                        <tr>
+                            <th class="day">Sun</th>
+                            <th class="day">Mon</th>
+                            <th class="day">Tue</th>
+                            <th class="day">Wed</th>
+                            <th class="day">Thu</th>
+                            <th class="day">Fri</th>
+                            <th class="day">Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tBody text-center"></tbody>
+                </table>
+                <div class="moveMonthBtns d-flex justify-content-between gap-3 mt-1 ms-auto me-auto" style="max-width: 500px">
+                    <div class="btn btn-danger prev-month">
+                        <i class="fa-solid fa-angles-left"></i>
+                    </div>
+                    <div class="btn btn-danger next-month">
+                        <i class="fa-solid fa-angles-right"></i>
+                    </div>
+                </div>
             </div>
-            <div class="btn btn-danger next-month">
-              <i class="fa-solid fa-angles-right"></i>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" tabindex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-lg-12 col-md-6 col-sm-8 mx-auto">
-                      <div class="card my-5">
-                        <h5 class="card-header bg-info text-white">
-                          Todo List
-                        </h5>
-                        <div class="card-body">
-                          <ul class="list-group mb-3">
-                            <li class="list-group-item">
-                              <i class="far fa-square done-icon"></i>
-                              <i class="far fa-check-square done-icon"></i>
-                              <span class="todo-text"
-                                >Here is a sample for todo</span
+            <div class="modal fade" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-6 col-sm-8 mx-auto">
+                                        <div class="card my-5">
+                                            <h5 class="card-header bg-info text-white">
+                                                Todo List
+                                            </h5>
+                                            <div class="card-body">
+                                                <ul class="list-group mb-3">
+                                                    <li class="list-group-item">
+                                                        <i class="far fa-square done-icon"></i>
+                                                        <i class="far fa-check-square done-icon"></i>
+                                                        <span class="todo-text">Here is a sample for todo</span
                               >
                               <i class="far fa-trash-alt"></i>
                             </li>
