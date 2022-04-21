@@ -108,8 +108,6 @@ function mainHeadingContent() {
   }
   const name = firstLetterUpper(users[currentUserIndex].name);
   const hour = new Date().getHours();
-  console.log(hour);
-
   let greeting;
   if (hour < 12 && hour > 6) greeting = "morning";
   else if (hour >= 12 && hour <= 18) greeting = "afternoon";
@@ -187,6 +185,13 @@ const createCalendar = (
   }
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
+  if (users[currentUserIndex].hasOwnProperty("tasks")) {
+    for (let date of Object.entries(users[currentUserIndex].tasks)) {
+      if (date[1].length > 0) {
+        createCellDot(date[0]);
+      }
+    }
+  }
 };
 const currDay = () => {
   let currDay = new Date();
@@ -271,6 +276,40 @@ function loadTasks(tasksArray) {
     }
   });
 }
+function createCellDot(date) {
+  const cells = document.querySelectorAll(".table-cells");
+  cells.forEach((cell) => {
+    if (cell.dataset.date === date) {
+      const div = document.createElement("div");
+      div.style.width = "70%";
+      div.style.height = "70%";
+      div.style.borderRadius = "50%";
+      div.style.margin = "auto";
+      div.style.backgroundColor = "#417D7A";
+      cell.style.color = "#fff";
+      cell.style.verticalAlign = "middle";
+      div.style.display = "flex";
+      div.style.justifyContent = "center";
+      div.style.alignItems = "center";
+      div.textContent = cell.innerText;
+      cell.textContent = "";
+      cell.append(div);
+    }
+  });
+}
+function removeCellDot(date) {
+  const cells = document.querySelectorAll(".table-cells");
+  cells.forEach((cell) => {
+    if (cell.dataset.date === date) {
+      const textNode = document.createTextNode(
+        cell.querySelector("div").innerText
+      );
+      cell.querySelector("div").remove();
+      cell.append(textNode);
+      cell.style.color = "#000";
+    }
+  });
+}
 const toDoList = () => {
   // Define all UI variable
   const todoList = document.querySelector(".list-group");
@@ -326,6 +365,7 @@ const toDoList = () => {
       todoList.appendChild(li);
       pushTaskToArray(todoInput.value);
       pushArrayToLocalStorage(users);
+      createCellDot(date);
       // Clear input
       todoInput.value = "";
     } else {
@@ -368,12 +408,18 @@ const toDoList = () => {
       });
       pushArrayToLocalStorage(users);
     }
+    if (users[currentUserIndex].tasks[date].length < 1) {
+      removeCellDot(date);
+    }
   }
   // Clear or remove all todos function
   function clearTodoList() {
-    todoList.innerHTML = "";
-    users[currentUserIndex].tasks[date] = [];
-    pushArrayToLocalStorage(users);
+    if (confirm("Are you sure you want to delete all the tasks?")) {
+      todoList.innerHTML = "";
+      users[currentUserIndex].tasks[date] = [];
+      pushArrayToLocalStorage(users);
+      removeCellDot(date);
+    }
   }
 };
 toDoList();
