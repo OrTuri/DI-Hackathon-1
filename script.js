@@ -462,17 +462,3 @@ function switchMonths(num) {
   document.forms.calendarForm.year.value = "";
   document.forms.calendarForm.month.value = "";
 }
-logInBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (
-        validateLogin(
-            users,
-            document.forms.logInForm.username.value,
-            document.forms.logInForm.password.value
-        )
-    ) {
-        displayMainScreen();
-        mainHeadingContent();
-        createCalendar();
-    }
-});
