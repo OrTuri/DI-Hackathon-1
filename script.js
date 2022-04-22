@@ -442,8 +442,8 @@ function removeCurrentCalendar() {
 const calendarForm = document.forms.calendarForm;
 calendarForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const year = calendarForm.year.value;
-  const month = calendarForm.month.value;
+  const year = Number(calendarForm.year.value);
+  const month = Number(calendarForm.month.value);
   if (year !== "" && month !== "") {
     removeCurrentCalendar();
     createCalendar(year, month);
@@ -468,4 +468,6 @@ function switchMonths(num) {
   removeCurrentCalendar();
   createCalendar(currentYear, currentMonth + num);
   createModal();
+  document.forms.calendarForm.year.value = "";
+  document.forms.calendarForm.month.value = "";
 }
