@@ -91,7 +91,6 @@ function displayMainScreen() {
   signUpScreen.classList.add("d-none");
   mainScreen.classList.toggle("d-none");
 }
-
 function hideMainScreen() {
   logInScreen.classList.remove("d-none");
   signUpScreen.classList.add("d-none");
@@ -128,7 +127,6 @@ const createCalendar = (
   const fullDate = new Date(year, month);
   let tbl = document.querySelector(".table-bordered");
   let tblBody = document.querySelector(".tBody");
-
   let date = 1;
   // check how many days in a month
   function daysInMonth(month, year) {
@@ -198,7 +196,6 @@ const currDay = () => {
   let currDay = new Date();
   return currDay.getDate();
 };
-
 function createCurrentDateTitle(date = new Date()) {
   date = new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
@@ -250,7 +247,6 @@ const createModal = () => {
     })
   );
 };
-
 function loadTasks(tasksArray) {
   const todoList = document.querySelector(".list-group");
   tasksArray.forEach((task) => {
@@ -278,7 +274,6 @@ function loadTasks(tasksArray) {
     }
   });
 }
-
 function createCellDot(date) {
   const cells = document.querySelectorAll(".table-cells");
   cells.forEach((cell) => {
@@ -301,7 +296,6 @@ function createCellDot(date) {
     }
   });
 }
-
 function removeCellDot(date) {
   const cells = document.querySelectorAll(".table-cells");
   cells.forEach((cell) => {
@@ -429,7 +423,6 @@ const toDoList = () => {
   }
 };
 toDoList();
-
 function removeCurrentCalendar() {
   const tableBody = document.querySelector(".tBody");
   tableBody.remove();
@@ -454,7 +447,6 @@ document.querySelector(".logout-btn").addEventListener("click", function (e) {
   hideMainScreen();
   removeCurrentCalendar();
 });
-
 function removeTasksFromDisplay() {
   const tasks = document.querySelectorAll(".list-group-item");
   tasks.forEach((task) => {
@@ -470,3 +462,17 @@ function switchMonths(num) {
   document.forms.calendarForm.year.value = "";
   document.forms.calendarForm.month.value = "";
 }
+logInBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (
+        validateLogin(
+            users,
+            document.forms.logInForm.username.value,
+            document.forms.logInForm.password.value
+        )
+    ) {
+        displayMainScreen();
+        mainHeadingContent();
+        createCalendar();
+    }
+});
