@@ -205,8 +205,7 @@ function createCurrentDateTitle(date = new Date()) {
     month: "long",
   });
   const container = document.querySelector(".dateTitle");
-  let textNode = "Current date: \n " + date;
-  container.append(textNode);
+  container.innerHTML = `Current date: <span class="fw-bold">${date}</span>`;
 }
 // Actions that will happend after the user click on the "log in" button
 logInBtn.addEventListener("click", function (e) {
