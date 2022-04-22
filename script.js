@@ -283,21 +283,23 @@ function createCellDot(date) {
   const cells = document.querySelectorAll(".table-cells");
   cells.forEach((cell) => {
     if (cell.dataset.date === date) {
-      const div = document.createElement("div");
-      div.className = "cellDot";
-      div.style.width = "15%";
-      div.style.height = "15%";
-      div.style.borderRadius = "50%";
-      div.style.margin = "auto";
-      div.style.backgroundColor = "#D1D1D1";
-      cell.style.position = "relative";
-      div.style.position = "absolute";
-      div.style.top = "5px";
-      div.style.left = "44%";
-      div.style.display = "flex";
-      div.style.justifyContent = "center";
-      div.style.alignItems = "center";
-      cell.append(div);
+      if (!cell.querySelector("div")) {
+        const div = document.createElement("div");
+        div.className = "cellDot";
+        div.style.width = "15%";
+        div.style.height = "15%";
+        div.style.borderRadius = "50%";
+        div.style.margin = "auto";
+        div.style.backgroundColor = "#D1D1D1";
+        cell.style.position = "relative";
+        div.style.position = "absolute";
+        div.style.top = "5px";
+        div.style.left = "44%";
+        div.style.display = "flex";
+        div.style.justifyContent = "center";
+        div.style.alignItems = "center";
+        cell.append(div);
+      }
     }
   });
 }
@@ -306,12 +308,7 @@ function removeCellDot(date) {
   const cells = document.querySelectorAll(".table-cells");
   cells.forEach((cell) => {
     if (cell.dataset.date === date) {
-      const textNode = document.createTextNode(
-        cell.querySelector("div").innerText
-      );
       cell.querySelector("div").remove();
-      cell.append(textNode);
-      cell.style.color = "#000";
     }
   });
 }
